@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  vertical-align: baseline;
+}
+
+html {
+  font-size: 10px;
+  font-family: sans-serif;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #222;
+  height: 8rem;
+  padding: 2rem;
+}
+
+.App-title {
+  font-size: 3rem;
+  color: #13b1fa;
+  font-weight: bold;
+}
+
+button::-moz-focus-inner {
+  border: 0;
+}

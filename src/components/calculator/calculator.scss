@@ -1,0 +1,58 @@
+//----- calculator container
+.calculator {
+  //   margin-top: 10rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  background-color: #333;
+  width: 95%;
+  padding-bottom: 0.3rem;
+
+  //----- display
+  .calculator__display {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-weight: bold;
+    height: 8rem;
+    font-size: 5rem;
+    padding: 0 1rem;
+  }
+
+  //----- functional keys
+  .calculator__function__keys--row {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-around;
+
+    //----- single key
+    .calculator__key {
+      padding: 25px;
+      height: 6rem;
+      width: 24%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-top: 1px;
+      margin-left: 1px;
+      outline: none;
+
+      cursor: pointer;
+
+      &:nth-child(1) {
+        margin-left: 2px;
+      }
+      &:nth-child(4) {
+        margin-right: 2px;
+      }
+
+      &:hover {
+        background-color: #777;
+      }
+    }
+  }
+}
