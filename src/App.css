@@ -1,14 +1,14 @@
 * {
+  font-size: 10px;
   margin: 0;
   padding: 0;
-  border: 0;
-  box-sizing: border-box;
   vertical-align: baseline;
+  box-sizing: border-box;
+  border: 0;
 }
 
 html {
   font-size: 10px;
-  font-family: sans-serif;
 }
 
 .App {
@@ -19,6 +19,7 @@ html {
   background-color: #222;
   height: 8rem;
   padding: 2rem;
+  width: 100%;
 }
 
 .App-title {

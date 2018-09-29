@@ -6,8 +6,16 @@
           transform: translate(-50%, -50%);
   color: #fff;
   background-color: #333;
-  width: 95%;
   padding-bottom: 0.3rem;
+  width: 94%;
+  height: 70vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .calculator .calculator__display {
@@ -20,26 +28,29 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-weight: bold;
-  height: 8rem;
-  font-size: 5rem;
-  padding: 0 1rem;
+  padding: 1rem 1rem 2rem 1rem;
+  font-size: 4.5rem;
+  border-bottom: 0.3rem solid #13b1fa;
 }
 
 .calculator .calculator__function__keys--row {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-flow: wrap;
-      flex-flow: wrap;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  height: 7rem;
+  padding: 0.1rem 0.15rem;
+  padding-bottom: 0;
+}
+
+.calculator .calculator__function__keys--row.first {
+  margin-top: 0.15rem;
 }
 
 .calculator .calculator__function__keys--row .calculator__key {
-  padding: 25px;
-  height: 6rem;
-  width: 24%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -49,23 +60,46 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: 1.5rem;
   font-weight: bold;
-  margin-top: 1px;
-  margin-left: 1px;
   outline: none;
   cursor: pointer;
+  font-size: 1.5rem;
+  padding: 1.5rem;
+  height: auto;
+  width: 24%;
 }
 
-.calculator .calculator__function__keys--row .calculator__key:nth-child(1) {
-  margin-left: 2px;
+.calculator .calculator__function__keys--row .calculator__key:first-child {
+  margin-left: 0.2rem;
 }
 
-.calculator .calculator__function__keys--row .calculator__key:nth-child(4) {
-  margin-right: 2px;
+.calculator .calculator__function__keys--row .calculator__key:last-child {
+  margin-right: 0.2rem;
 }
 
 .calculator .calculator__function__keys--row .calculator__key:hover {
   background-color: #777;
+}
+
+.calculator .calculator__function__keys--row .calculator__key.span {
+  width: 49%;
+}
+
+@media only screen and (min-width: 480px) {
+  .calculator {
+    width: 60%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .calculator {
+    width: 40%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .calculator {
+    width: 30%;
+  }
 }
 /*# sourceMappingURL=calculator.css.map */
