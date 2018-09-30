@@ -4,15 +4,26 @@ import "./calculator.css";
 class Calculator extends Component {
   //----- State
   state = {
-    displayed: "0"
+    displayed: "0",
+    waitingForOperand: false,
+    operator: null,
+    actualValue: null
   };
 
-  //----- On input
+  //----- Numeric input
   inputValue(input) {
-    const { displayed } = this.state;
-    this.setState({
-      displayed: displayed === "0" ? String(input) : displayed + input
-    });
+    const { displayed, waitingForOperand } = this.state;
+
+    if (waitingForOperand) {
+      this.setState({
+        displayed: String(input),
+        waitingForOperand: false
+      });
+    } else {
+      this.setState({
+        displayed: displayed === "0" ? String(input) : displayed + input
+      });
+    }
   }
 
   // Percentage input
@@ -53,17 +64,36 @@ class Calculator extends Component {
   inputPow() {
     const { displayed } = this.state;
 
+    let pow = parseFloat(Math.pow(displayed, 2));
+    let powCheck = () => {
+      if (String(pow).indexOf(".") === -1) {
+        return String(pow);
+      } else {
+        return String(pow).split("").length > 5 ? pow.toFixed(4) : String(pow);
+      }
+    };
+
     this.setState({
-      displayed: String(parseFloat(Math.pow(displayed, 2)))
+      displayed: powCheck()
     });
   }
 
   // Divide one by x input
   inputDivideOneByX() {
     const { displayed } = this.state;
+    let x = parseFloat(1 / displayed);
+    let xCheck = () => {
+      if (String(x).indexOf(".") === -1) {
+        return String(x);
+      } else {
+        return String(x).split("").length > 5 ? x.toFixed(4) : String(x);
+      }
+    };
+
+    console.log();
 
     this.setState({
-      displayed: displayed === "0" ? "ERROR" : String(parseFloat(1 / displayed))
+      displayed: displayed === "0" ? "ERROR" : xCheck()
     });
   }
 
@@ -80,15 +110,23 @@ class Calculator extends Component {
   //----- Clear button
   clearAll() {
     this.setState({
-      displayed: "0"
+      displayed: "0",
+      waitingForOperand: false,
+      operator: null,
+      actualValue: null
     });
   }
 
   //----- Decimal button
   inputDecimal() {
-    const { displayed } = this.state;
+    const { displayed, waitingForOperand } = this.state;
 
-    if (displayed.indexOf(".") === -1) {
+    if (waitingForOperand) {
+      this.setState({
+        displayed: "0.",
+        waitingForOperand: false
+      });
+    } else if (displayed.indexOf(".") === -1) {
       this.setState({
         displayed: String(displayed + ".")
       });
@@ -106,6 +144,36 @@ class Calculator extends Component {
           : displayed.charAt(0) === "-"
             ? displayed.substr(1)
             : "-" + displayed
+    });
+  }
+
+  // Math operations
+  mathOperation(nextOperator) {
+    const { displayed, operator, actualValue } = this.state;
+    const nextValue = parseFloat(displayed);
+    const operations = {
+      "+": (previousValue, nextValue) => previousValue + nextValue,
+      "-": (previousValue, nextValue) => previousValue - nextValue,
+      "*": (previousValue, nextValue) => previousValue * nextValue,
+      "/": (previousValue, nextValue) => previousValue / nextValue,
+      "=": nextValue => nextValue
+    };
+
+    if (actualValue === null) {
+      this.setState({
+        actualValue: nextValue
+      });
+    } else if (operator) {
+      const currentValue = actualValue || 0;
+      const result = operations[operator](currentValue, nextValue);
+      this.setState({
+        actualValue: result,
+        displayed: String(result)
+      });
+    }
+    this.setState({
+      waitingForOperand: true,
+      operator: nextOperator
     });
   }
 
@@ -157,7 +225,10 @@ class Calculator extends Component {
           >
             D
           </button>
-          <button className="calculator__key calculator__key--divide">
+          <button
+            onClick={() => this.mathOperation("/")}
+            className="calculator__key calculator__key--divide"
+          >
             &divide;
           </button>
         </div>
@@ -181,7 +252,10 @@ class Calculator extends Component {
           >
             9
           </button>
-          <button className="calculator__key calculator__key--times">
+          <button
+            onClick={() => this.mathOperation("*")}
+            className="calculator__key calculator__key--times"
+          >
             &times;
           </button>
         </div>
@@ -205,7 +279,10 @@ class Calculator extends Component {
           >
             6
           </button>
-          <button className="calculator__key calculator__key--minus">
+          <button
+            onClick={() => this.mathOperation("-")}
+            className="calculator__key calculator__key--minus"
+          >
             &minus;
           </button>
         </div>
@@ -229,7 +306,10 @@ class Calculator extends Component {
           >
             3
           </button>
-          <button className="calculator__key calculator__key--plus">
+          <button
+            onClick={() => this.mathOperation("+")}
+            className="calculator__key calculator__key--plus"
+          >
             &#x2b;
           </button>
         </div>
@@ -253,7 +333,12 @@ class Calculator extends Component {
           >
             .
           </button>
-          <button className="calculator__key calculator__key--equal">=</button>
+          <button
+            onClick={() => this.mathOperation("=")}
+            className="calculator__key calculator__key--equal"
+          >
+            =
+          </button>
         </div>
       </div>
       // END OF CALCULATOR CLASS
