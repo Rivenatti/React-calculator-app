@@ -155,7 +155,8 @@ class Calculator extends Component {
       "+": (previousValue, nextValue) => previousValue + nextValue,
       "-": (previousValue, nextValue) => previousValue - nextValue,
       "*": (previousValue, nextValue) => previousValue * nextValue,
-      "/": (previousValue, nextValue) => previousValue / nextValue,
+      "/": (previousValue, nextValue) =>
+        nextValue === 0 ? "ERROR" : previousValue / nextValue,
       "=": nextValue => nextValue
     };
 
