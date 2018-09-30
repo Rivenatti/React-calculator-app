@@ -25,9 +25,7 @@ class Calculator extends Component {
         </div>
         {/* Functional keys row */}
         <div className="calculator__function__keys--row">
-          <button className="calculator__key calculator__key--clear span">
-            C
-          </button>
+          <button className="calculator__key calculator__key--clear">C</button>
 
           <button className="calculator__key calculator__key--delete">D</button>
           <button className="calculator__key calculator__key--divide">

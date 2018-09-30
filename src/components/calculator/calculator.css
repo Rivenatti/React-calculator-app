@@ -4,8 +4,6 @@
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  color: #fff;
-  background-color: #333;
   padding-bottom: 0.3rem;
   width: 94%;
   height: 70vh;
@@ -30,7 +28,13 @@
           align-items: center;
   padding: 1rem 1rem 2rem 1rem;
   font-size: 4.5rem;
-  border-bottom: 0.3rem solid #13b1fa;
+  background-color: #343b59;
+  border: 0.1rem solid #314053;
+  border-bottom: 0;
+  color: #fff;
+  height: 20vh;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .calculator .calculator__function__keys--row {
@@ -42,15 +46,10 @@
           justify-content: space-between;
   width: 100%;
   height: 7rem;
-  padding: 0.1rem 0.15rem;
-  padding-bottom: 0;
-}
-
-.calculator .calculator__function__keys--row.first {
-  margin-top: 0.15rem;
 }
 
 .calculator .calculator__function__keys--row .calculator__key {
+  color: #ccc;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -66,23 +65,26 @@
   font-size: 1.5rem;
   padding: 1.5rem;
   height: auto;
-  width: 24%;
+  width: 25%;
+  background-color: #434d73;
+  border-right: 0.1rem solid #314053;
+  border-bottom: 0.1rem solid #314053;
 }
 
 .calculator .calculator__function__keys--row .calculator__key:first-child {
-  margin-left: 0.2rem;
+  border-left: 0.1rem solid #314053;
 }
 
-.calculator .calculator__function__keys--row .calculator__key:last-child {
-  margin-right: 0.2rem;
+.calculator .calculator__function__keys--row .calculator__key:active {
+  background-color: #da621e;
 }
 
-.calculator .calculator__function__keys--row .calculator__key:hover {
-  background-color: #777;
+.calculator .calculator__function__keys--row .calculator__key--clear {
+  width: 50%;
 }
 
-.calculator .calculator__function__keys--row .calculator__key.span {
-  width: 49%;
+.calculator .calculator__function__keys--row .calculator__key--percentage, .calculator .calculator__function__keys--row .calculator__key--square-root, .calculator .calculator__function__keys--row .calculator__key--power, .calculator .calculator__function__keys--row .calculator__key--one-division, .calculator .calculator__function__keys--row .calculator__key--divide, .calculator .calculator__function__keys--row .calculator__key--times, .calculator .calculator__function__keys--row .calculator__key--minus, .calculator .calculator__function__keys--row .calculator__key--plus, .calculator .calculator__function__keys--row .calculator__key--plusminus, .calculator .calculator__function__keys--row .calculator__key--point, .calculator .calculator__function__keys--row .calculator__key--equal {
+  background-color: #3e4669;
 }
 
 @media only screen and (min-width: 480px) {
@@ -99,7 +101,8 @@
 
 @media only screen and (min-width: 1200px) {
   .calculator {
-    width: 30%;
+    width: 20%;
+    height: 50vh;
   }
 }
 /*# sourceMappingURL=calculator.css.map */
