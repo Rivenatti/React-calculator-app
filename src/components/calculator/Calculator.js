@@ -40,12 +40,30 @@ class Calculator extends Component {
           return String(squareRoot.toFixed(5));
         }
       } else {
-        return "error";
+        return "ERROR";
       }
     };
 
     this.setState({
       displayed: sqrtCheck()
+    });
+  }
+
+  //----- Power input
+  inputPow() {
+    const { displayed } = this.state;
+
+    this.setState({
+      displayed: String(parseFloat(Math.pow(displayed, 2)))
+    });
+  }
+
+  // Divide one by x input
+  inputDivideOneByX() {
+    const { displayed } = this.state;
+
+    this.setState({
+      displayed: displayed === "0" ? "ERROR" : String(parseFloat(1 / displayed))
     });
   }
 
@@ -111,10 +129,16 @@ class Calculator extends Component {
           >
             &radic;
           </button>
-          <button className="calculator__key calculator__key--power">
+          <button
+            onClick={() => this.inputPow()}
+            className="calculator__key calculator__key--power"
+          >
             x&sup2;
           </button>
-          <button className="calculator__key calculator__key--one-division">
+          <button
+            onClick={() => this.inputDivideOneByX()}
+            className="calculator__key calculator__key--one-division"
+          >
             1/x
           </button>
         </div>
