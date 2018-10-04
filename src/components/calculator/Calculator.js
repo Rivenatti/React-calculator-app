@@ -90,8 +90,6 @@ class Calculator extends Component {
       }
     };
 
-    console.log();
-
     this.setState({
       displayed: displayed === "0" ? "ERROR" : xCheck()
     });
@@ -178,12 +176,21 @@ class Calculator extends Component {
     });
   }
 
+  checkDisplay = () => {
+    if (this.state.displayed === "ERROR" || this.state.displayed === "NaN") {
+      return "ERROR";
+    } else if (this.state.displayed.length > 15) {
+      return "OUT OF RANGE";
+    } else {
+      return this.state.displayed;
+    }
+  };
+
   render() {
     return (
       <div className="calculator">
         {/* Display */}
-        <div className="calculator__display">{this.state.displayed}</div>
-
+        <div className="calculator__display">{this.checkDisplay()}</div>
         {/* Functional keys row */}
         <div className="calculator__function__keys--row first">
           <button
