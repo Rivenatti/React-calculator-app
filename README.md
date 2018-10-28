@@ -1,4 +1,8 @@
-#### To check live version click: [here](https://react-calc.msulewski.pl/)
+# React Calculator App
+
+Simplier version of windows calculator remade in React just for training and fun purposes.
+
+#### To check live verion click: [here](https://react-calc.msulewski.pl/)
 
 ## Get started
 * Install all React project dependencies
@@ -6,3 +10,4 @@
 
 * Start the development server with
 > npm start
+
